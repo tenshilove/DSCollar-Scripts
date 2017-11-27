@@ -1,197 +1,89 @@
-//////////////////////////////////////////////////////////////////////////////
+/*
+dsc_abel - 171127.0
 
-//                                                                          //
+Copyright (c) 2006 - 2016 Xylor Baysklef, Kermitt Quirk,               
+Thraxis Epsilon, Gigs Taggart, Strife Onizuka, Huney Jewell,            
+Salahzar Stenvaag, Lulu Pink, Nandana Singh, Cleo Collins, Satomi Ahn,  
+Joy Stipe, Wendy Starfall, Romka Swallowtail, littlemousy,              
+Garvin Twine et al.                                                     
 
-//              ____                   ______      ____                     //
+This script is free software: you can redistribute it and/or modify     
+it under the terms of the GNU General Public License as published       
+by the Free Software Foundation, version 2.                             
+                                                                        
+This script is distributed in the hope that it will be useful,          
+but WITHOUT ANY WARRANTY; without even the implied warranty of          
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the            
+GNU General Public License for more details.                            
+                                                                        
+You should have received a copy of the GNU General Public License       
+along with this script; if not, see www.gnu.org/licenses/gpl-2.0        
 
-//             / __ \____  ___  ____  / ____/___  / / /___ ______           //
+This script and any derivatives based on it must remain "full perms".   
+                                                                        
+"Full perms" means maintaining MODIFY, COPY, and TRANSFER permissions   
+in Second Life(R), OpenSimulator and the Metaverse.                     
+                                                                        
+If these platforms should allow more fine-grained permissions in the    
+future, then "full perms" will mean the most permissive possible set    
+of permissions allowed by the platform.                                 
 
-//            / / / / __ \/ _ \/ __ \/ /   / __ \/ / / __ `/ ___/           //
 
-//           / /_/ / /_/ /  __/ / / / /___/ /_/ / / / /_/ / /               //
 
-//           \____/ .___/\___/_/ /_/\____/\____/_/_/\__,_/_/                //
+     github.com/tenshilove/DsCollar-scripts/tree/master/src
 
-//               /_/                                                        //
-
-//                                                                          //
-
-//                        ,^~~~-.         .-~~~"-.                          //
-
-//                       :  .--. \       /  .--.  \                         //
-
-//                       : (    .-`<^~~~-: :    )  :                        //
-
-//                       `. `-,~            ^- '  .'                        //
-
-//                         `-:                ,.-~                          //
-
-//                          .'                  `.                          //
-
-//                         ,'   @   @            |                          //
-
-//                         :    __               ;                          //
-
-//                      ...{   (__)          ,----.                         //
-
-//                     /   `.              ,' ,--. `.                       //
-
-//                    |      `.,___   ,      :    : :                       //
-
-//                    |     .'    ~~~~       \    / :                       //
-
-//                     \.. /               `. `--' .'                       //
-
-//                        |                  ~----~                         //
-
-//                           Label - 161030.1                               //
-
-// ------------------------------------------------------------------------ //
-
-//  Copyright (c) 2006 - 2016 Xylor Baysklef, Kermitt Quirk,                //
-
-//  Thraxis Epsilon, Gigs Taggart, Strife Onizuka, Huney Jewell,            //
-
-//  Salahzar Stenvaag, Lulu Pink, Nandana Singh, Cleo Collins, Satomi Ahn,  //
-
-//  Joy Stipe, Wendy Starfall, Romka Swallowtail, littlemousy,              //
-
-//  Garvin Twine et al.                                                     //
-
-// ------------------------------------------------------------------------ //
-
-//  This script is free software: you can redistribute it and/or modify     //
-
-//  it under the terms of the GNU General Public License as published       //
-
-//  by the Free Software Foundation, version 2.                             //
-
-//                                                                          //
-
-//  This script is distributed in the hope that it will be useful,          //
-
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of          //
-
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the            //
-
-//  GNU General Public License for more details.                            //
-
-//                                                                          //
-
-//  You should have received a copy of the GNU General Public License       //
-
-//  along with this script; if not, see www.gnu.org/licenses/gpl-2.0        //
-
-// ------------------------------------------------------------------------ //
-
-//  This script and any derivatives based on it must remain "full perms".   //
-
-//                                                                          //
-
-//  "Full perms" means maintaining MODIFY, COPY, and TRANSFER permissions   //
-
-//  in Second Life(R), OpenSimulator and the Metaverse.                     //
-
-//                                                                          //
-
-//  If these platforms should allow more fine-grained permissions in the    //
-
-//  future, then "full perms" will mean the most permissive possible set    //
-
-//  of permissions allowed by the platform.                                 //
-
-// ------------------------------------------------------------------------ //
-
-//       github.com/VirtualDisgrace/opencollar/tree/master/src/collar       //
-
-// ------------------------------------------------------------------------ //
-
-//////////////////////////////////////////////////////////////////////////////
+*/
 
 
 
 string g_sAppVersion = "¹⋅⁶";
 
 
-
 string g_sParentMenu = "Apps";
-
 string g_sSubMenu = "Label";
 
 
-
 key g_kWearer;
-
 string g_sSettingToken = "label_";
-
 //string g_sGlobalToken = "global_";
 
 
-
 //MESSAGE MAP
-
 //integer CMD_ZERO = 0;
-
 integer CMD_OWNER            = 500;
-
 integer CMD_TRUSTED          = 501;
-
 //integer CMD_GROUP          = 502;
-
 integer CMD_WEARER           = 503;
-
 //integer CMD_EVERYONE       = 504;
-
 //integer CMD_RLV_RELAY      = 507;
-
 //integer CMD_SAFEWORD       = 510;
-
 //integer CMD_RELAY_SAFEWORD = 511;
-
 //integer CMD_BLOCKED = 520;
 
 
-
 integer NOTIFY = 1002;
-
 //integer SAY = 1004;
-
 integer REBOOT = -1000;
-
 integer LINK_DIALOG = 3;
-
 //integer LINK_RLV = 4;
 
 integer LINK_SAVE = 5;
-
 integer LINK_UPDATE = -10;
-
 integer LM_SETTING_SAVE = 2000;
-
 //integer LM_SETTING_REQUEST = 2001;
-
 integer LM_SETTING_RESPONSE = 2002;
-
 integer LM_SETTING_DELETE = 2003;
-
 //integer LM_SETTING_EMPTY = 2004;
 
 
-
 integer MENUNAME_REQUEST = 3000;
-
 integer MENUNAME_RESPONSE = 3001;
-
 integer MENUNAME_REMOVE = 3003;
 
 
-
 integer DIALOG = -9000;
-
 integer DIALOG_RESPONSE = -9001;
-
 integer DIALOG_TIMEOUT = -9002;
-
 
 
 integer g_iCharLimit = -1;
